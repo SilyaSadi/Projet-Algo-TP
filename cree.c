@@ -54,6 +54,28 @@ void afficherTableau(int tableau[], int taille) {
      // Fermer la fenêtre à la fin de l'affichage
     CloseWindow();
 }
+//fonction de tri
+void triInsertion(int tableau[], int n, bool croissant) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = tableau[i];
+        j = i - 1;
+
+        if (croissant) {
+            while (j >= 0 && tableau[j] > key) {
+                tableau[j + 1] = tableau[j];
+                j = j - 1;
+            }
+        } else {
+            while (j >= 0 && tableau[j] < key) {
+                tableau[j + 1] = tableau[j];
+                j = j - 1;
+            }
+        }
+        tableau[j + 1] = key;
+    }
+}
+
 
 int main() {
     int tableau[MAX_SIZE];
