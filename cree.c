@@ -75,6 +75,52 @@ void triInsertion(int tableau[], int n, bool croissant) {
         tableau[j + 1] = key;
     }
 }
+void VisualizationDuTri() {
+    int tableau[MAX_SIZE];
+    int taille;
+    bool croissant = true;
+
+    InitWindow(800, 600, "Sorting Visualization with Table");
+    SetTargetFPS(60);
+
+    remplirTableauAleatoire(tableau, &taille);
+
+    while (!WindowShouldClose()) {
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            int mouseX = GetMouseX();
+            int mouseY = GetMouseY();
+
+            if (CheckCollisionPointRec((Vector2){mouseX, mouseY}, (Rectangle){10, 10, 150, 40})) {
+                croissant = true;
+                triInsertion(tableau, taille, croissant);
+            } else if (CheckCollisionPointRec((Vector2){mouseX, mouseY}, (Rectangle){170, 10, 150, 40})) {
+                croissant = false;
+                triInsertion(tableau, taille, croissant);
+            }
+        }
+
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        DrawRectangle(10, 10, 150, 70, LIGHTGRAY);
+        DrawText("tri croissant", 20, 20, 20, BLACK);
+
+        DrawRectangle(170, 10, 180, 70, LIGHTGRAY);
+        DrawText("tri decroissant", 180, 20, 20, BLACK);
+
+        const int hauteurFixe = 50;
+        for (int i = 0; i < taille; ++i) {
+           
+            int yPos = 500 - hauteurFixe;
+            DrawRectangle(i * 60 + 10, yPos, 50, hauteurFixe, RED);
+            DrawText(TextFormat("%d", tableau[i]), i * 60 + 30, yPos + 10, 20, WHITE);
+        }
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+}
 
 
 int main() {
@@ -86,6 +132,6 @@ int main() {
 
     // Appeler la fonction pour afficher le tableau
     afficherTableau(tableau, taille);
-
+    VisualizationDuTri();
     return 0;
 }
