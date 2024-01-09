@@ -22,6 +22,7 @@ void remplirTableauAleatoire(int tableau[], int *taille) {
         tableau[i] = rand() % 100; // Valeurs aléatoires entre 0 et 99
     }
 }
+
 void afficherTableau(int tableau[], int taille) {
     const int screenWidth = 1200;
     const int screenHeight = 450;
@@ -54,7 +55,9 @@ void afficherTableau(int tableau[], int taille) {
      // Fermer la fenêtre à la fin de l'affichage
     CloseWindow();
 }
+
 //fonction de tri
+
 void triInsertion(int tableau[], int n, bool croissant) {
     int i, key, j;
     for (i = 1; i < n; i++) {
@@ -131,7 +134,7 @@ int main() {
     remplirTableauAleatoire(tableau,&taille);
 
     // Appeler la fonction pour afficher le tableau
-    afficherTableau(tableau, taille);
+    //afficherTableau(tableau, taille);
     VisualizationDuTri();
     return 0;
 }
